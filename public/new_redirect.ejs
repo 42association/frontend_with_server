@@ -13,7 +13,7 @@
             const uid = localStorage.getItem('uid');
             if (login && uid) {
                 // 最終的なリダイレクトURLを構築
-                window.location.href = `http://localhost:${subaru}?uid=${uid}&login=${login}`;
+                window.location.href = `http://localhost:${subaru}?&login=${login}`;
             } else {
                 // エラーハンドリング
                 document.body.innerHTML = '<p>必要な情報が読み取れませんでした。</p>';
