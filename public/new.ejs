@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>UID チェック</title>
+</head>
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // URLからクエリパラメータを解析
+            const params = new URLSearchParams(window.location.search);
+            const uid = params.get('uid');
+            if (uid) {
+                // uidが存在する場合、ローカルストレージに保存してリダイレクト
+                localStorage.setItem('uid', uid);
+                window.location.href = '<%= authURL %>'; // Expressから受け取ったURLにリダイレクト
+            } else {
+                // uidが存在しない場合、エラーメッセージを表示
+                document.body.innerHTML = '<p>uidが読み取れませんでした。</p>';
+            }
+        });
+    </script>
+</body>
+</html>

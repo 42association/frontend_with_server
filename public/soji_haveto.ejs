@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Have To Do</title>
+</head>
+<body>
+<main class="wrap">
+    <header class="mainHeader mainHeader-list">
+        <h1 class="mainHeader_title">Have To Do</h1>
+        <nav class="navGlobal">
+            <ul class="listNavGlobal">
+                <li class="listNavGlobal_item"><a href="/soji/did">Did</a></li>
+                <li class="listNavGlobal_item"><a href="/soji">Today</a></li>
+                <li class="listNavGlobal_item listNavGlobal_item-current"><a href="/soji/haveto" class="line2">Have <br>To Do</a></li>
+            </ul>
+        </nav>
+        <nav class="navDateSelector">
+            <div class="formCalendar">
+                <label for="datePicker">jump:</label>
+                <input type="date" id="datePicker" name="trip-start" value="2024-04-15" min="2024-04-15" max="2024-06-15" />
+            </div>
+        </nav>
+    </header>
+    <div class="mainContainer">
+        <div class="wrapListData">
+            <% for (let i = 15; i <= 31; i++) { %>
+            <section id="anc2024-04-<%= i %>" class="secListData">
+                <h2 class="secListData_date">04/<%= i %><span class="week">(day)</span></h2>
+                <ul class="secListData_list listMember">
+                    <% info.did.forEach(function(person) { %>
+                    <li class="listMember_item"><%= person %></li>
+                    <% }); %>
+                </ul>
+            </section>
+            <% } %>
+            <% for (let i = 1; i <= 15; i++) { %>
+            <section id="anc2024-05-<%= i %>" class="secListData">
+                <h2 class="secListData_date">05/<%= i %><span class="week">(day)</span></h2>
+                <ul class="secListData_list listMember">
+                    <% info.did.forEach(function(person) { %>
+                    <li class="listMember_item"><%= person %></li>
+                    <% }); %>
+                </ul>
+            </section>
+            <% } %>
+        </div>
+    </div>
+</main>
+<script src="/js/scripts.js"></script>
+</body>
+</html>

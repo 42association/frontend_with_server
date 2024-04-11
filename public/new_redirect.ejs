@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>リダイレクト処理</title>
+</head>
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = new URLSearchParams(window.location.search);
+            const login = params.get('login');
+            const subaru = params.get('subaru');
+            const uid = localStorage.getItem('uid');
+            if (login && uid) {
+                // 最終的なリダイレクトURLを構築
+                window.location.href = `http://localhost:${subaru}?uid=${uid}&login=${login}`;
+            } else {
+                // エラーハンドリング
+                document.body.innerHTML = '<p>必要な情報が読み取れませんでした。</p>';
+            }
+        });
+    </script>
+</body>
+</html>

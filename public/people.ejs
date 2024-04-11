@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>施設利用状況</title>
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,shrink-to-fit=no" name="viewport">
+    <style>
+      *{
+        box-sizing:border-box;
+      }
+
+      body {
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+      }
+      
+      .container{
+        width: 100%;
+        max-width: 768px;
+        padding: 20px;
+        background-color: #f4f4f4;
+        min-height: 100vh;
+      }
+      
+      h1 {
+        color: #333;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      li {
+        background-color: #fff;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        padding: 10px 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        list-style-type: none;
+      }
+
+      li:not(:last-child) {
+        margin-bottom: 15px;
+      }
+
+      li div{
+        display: flex;
+        align-items: center;
+      }
+
+      li div img{
+        height: 30px;
+        width: 30px;
+        object-fit: cover;
+        margin-right: 10px;
+      }
+
+      .name {
+        font-size: 16px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      .timeEntered {
+        font-size: 16px;
+        color: #666;
+        white-space: nowrap;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>施設利用状況</h1>
+      <ul>
+        <% people.forEach(function(person) { %>
+        <li>
+          <div>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/8d/42_Logo.svg"/>
+            <span class="name"><%= person.name %></span>
+          </div>
+          <span class="timeEntered"><%= person.timeEntered %></span>
+        </li>
+        <% }); %>
+      </ul>
+    </div>
+  </body>
+</html>

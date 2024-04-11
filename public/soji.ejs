@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Tasks for <%= info.month %>/<%= info.day %></title>
+</head>
+<body>
+<main class="wrap">
+    <header class="mainHeader mainHeader-index">
+        <h1 class="mainHeader_title unitDate">
+            <span class="unitDate_month"><%= info.month %></span>
+            <span class="unitDate_slash">/</span>
+            <span class="unitDate_day"><%= info.day %></span>
+        </h1>
+        <nav class="navGlobal">
+            <ul class="listNavGlobal">
+                <li class="listNavGlobal_item"><a href="/soji/did">Did</a></li>
+                <li class="listNavGlobal_item listNavGlobal_item-current"><a href="/soji">Today</a></li>
+                <li class="listNavGlobal_item"><a href="/soji/haveto">Have <br>To Do</a></li>
+            </ul>
+        </nav>
+        <nav class="navPrevNext">
+            <ol class="listPrevNext">
+                <li class="listPrevNext_item listPrevNext_item-prev"><a href="#">&lt;</a></li>
+                <li class="listPrevNext_item listPrevNext_item-next"><a href="#">&gt;</a></li>
+            </ol>
+        </nav>
+    </header>
+    <div class="mainContainer">
+        <section class="secListMember secListMember-did">
+            <h2 class="secListMember_title">Did</h2>
+            <ul class="secListMember_list listMember">
+                <% info.did.forEach(function(item) { %>
+                <li class="listMember_item"><%= item %></li>
+                <% }); %>
+            </ul>
+        </section>
+        <section class="secListMember secListMember-haveto">
+            <h2 class="secListMember_title">Have To Do</h2>
+            <ul class="secListMember_list listMember">
+                <% info.haveto.forEach(function(item) { %>
+                <li class="listMember_item"><%= item %></li>
+                <% }); %>
+            </ul>
+        </section>
+        <nav class="navDateSelector navDateSelector-index">
+            <div class="formCalendar">
+                <label for="datePickerIndex">jump:</label>
+                <input type="date" id="datePickerIndex" name="trip-start" value="<%= info.date %>" min="2024-04-01" max="2024-06-15" />
+            </div>
+        </nav>
+    </div>
+</main>
+<script src="/js/scripts.js"></script>
+</body>
+</html>
