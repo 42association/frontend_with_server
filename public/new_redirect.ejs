@@ -10,10 +10,39 @@
             const params = new URLSearchParams(window.location.search);
             const login = params.get('login');
             const subaru = params.get('subaru');
+            const dbserver = params.get('dbserver');
             const uid = localStorage.getItem('uid');
             if (login && uid) {
                 // 最終的なリダイレクトURLを構築
-                window.location.href = `http://localhost:${subaru}?&login=${login}`;
+                // ユーザー追加のためのデータ
+                const userData = {
+                    login: login,
+                    uid: uid,
+                };
+
+                // fetchを使用してPOSTリクエストを送信
+                fetch(dbserver, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(userData),
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('ネットワークレスポンスが不正です');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('成功:', data);
+                    // 成功した場合、指定されたページにリダイレクト
+                    window.location.href = `${subaru}?&login=${login}`;
+                })
+                .catch((error) => {
+                    console.error('失敗:', error);
+                    document.body.innerHTML = '<p>ユーザーの追加に失敗しました。</p>';
+                });
             } else {
                 // エラーハンドリング
                 document.body.innerHTML = '<p>必要な情報が読み取れませんでした。</p>';

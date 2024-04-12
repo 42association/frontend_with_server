@@ -9,7 +9,8 @@ const UID = process.env.UID;
 const SECRET = process.env.SECRET;
 const port = process.env.PORT; // デフォルト値の設定
 const subaru = process.env.SUBARU; // デフォルト値の設定
-const CALLBACK_URL = `http://localhost:${port}/callback/`;
+const dbserver=process.env.DBSERVER;
+const CALLBACK_URL = process.env.CALLBACK_URL;
 
 // ルートエンドポイントのハンドラー
 export const handleNew = (req, res) => {
@@ -49,7 +50,7 @@ export const handleCallback = (req, res) => {
             if (!error && response.statusCode == 200) {
               const userData = JSON.parse(body);
               // login情報をフロントエンドに渡すためのリダイレクトを実行
-              res.redirect(`/redirect?login=${userData.login}&subaru=${subaru}`);
+              res.redirect(`/redirect?login=${userData.login}&subaru=${encodeURIComponent(subaru)}&dbserver=${encodeURIComponent(dbserver)}`);
             } else {
               res.send("Failed to retrieve user information.");
             }
